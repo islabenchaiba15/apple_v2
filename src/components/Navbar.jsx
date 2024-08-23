@@ -3,7 +3,7 @@ import { appleImg, bagImg, searchImg } from '../utils'
 
 function Navbar() {
   return (
-    <div className='flex justify-between gap-10 items-center sm:px-10 px-5 py-5 w-full mw-auto relative max-w-[1200px]'>
+    <div className='flex justify-between gap-10 items-center sm:px-10 px-5 py-5 w-full mw-auto relative mx-auto max-w-[1200px]'>
         <img src={appleImg} alt={'logo'} width={14} height={18} />
         <div className="flex gap-8 items-center justify-between max-sm:hidden">
             {navLists.map((nav,index)=>(
