@@ -4,7 +4,7 @@ import { yellowImg } from "../utils";
 import ModelView from "./ModelView";
 import * as THREE from "three";
 import { Canvas } from "@react-three/fiber";
-import { Suspense, useRef, useState } from "react";
+import { Suspense, useEffect, useRef, useState } from "react";
 import { Environment, PerspectiveCamera, View } from "@react-three/drei";
 import { models, sizes } from "../constants";
 import Iphone from "./Iphone";
@@ -26,6 +26,33 @@ function Model() {
       opacity: 1,
     });
   });
+  const t1=gsap.timeline()
+  useEffect(()=>{
+    if(size==='large'){
+        t1.to("#view2",{
+            transform:'translateX(-100%)',
+            duration:2,
+            ease:'power2.inOut'
+        },"keys1")
+        t1.to("#view1",{
+            transform:'translateX(-100%)',
+            duration:2,
+            ease:'power2.inOut'
+        },"keys1")
+    }
+    if(size==='small'){
+        t1.to("#view1",{
+            transform:'translateX(0%)',
+            duration:2,
+            ease:'power2.inOut'
+        },"keys")
+        t1.to("#view2",{
+            transform:'translateX(0%)',
+            duration:2,
+            ease:'power2.inOut'
+        },"keys")
+    }
+  },[size])
   return (
     <div className=" mx-auto max-w-[1200px] sm:py-32 py-20 sm:px-10 px-5 ">
       <div className="title opacity-0 text-gray-400 lg:text-6xl md:text-5xl text-3xl translate-y-20 ">

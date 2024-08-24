@@ -1,10 +1,17 @@
 import { Environment, OrbitControls, PerspectiveCamera, View } from "@react-three/drei";
-import { Suspense } from "react";
+import { Suspense, useMemo } from "react";
 import Iphone from "./Iphone";
 import { Canvas } from "@react-three/fiber";
+import LoaderModel from "./Loader";
 
 function ModelView({ index, groupRef, gsapType, controlRef, item, size }) {
-  return (
+    const scale = useMemo(() => {
+        // Define fixed scales for each view
+        if (index === 2) return [17, 17, 17];
+        return [15, 15, 15] // Large view
+      }, [index]);
+  
+    return (
     <View
       index={index}
       id={gsapType}
@@ -19,10 +26,10 @@ function ModelView({ index, groupRef, gsapType, controlRef, item, size }) {
       ref={controlRef}
       makeDefault
       />
-      <PerspectiveCamera makeDefault position={[0, 0, 3]} />
+      <PerspectiveCamera makeDefault position={[0, 0, 4]} />
       <group ref={groupRef} name={`${index===1} ? 'small' :'large'`} position={[0,0,0]}>
-        <Suspense fallback={null}>
-          <Iphone item={item} size={size} scale={index===1?[10,10,10]:[12,12,12] } />
+        <Suspense fallback={<LoaderModel/>}>
+          <Iphone item={item} size={size}  scale={scale}/>
         </Suspense>
       </group>
     </View>
