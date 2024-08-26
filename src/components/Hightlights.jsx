@@ -45,7 +45,7 @@ function Hightlights() {
           </div>
         </div>
       </div>
-      {/* <VideoCarousel/>     */}
+      <VideoCarousel/>    
     </div>
   );
 }
