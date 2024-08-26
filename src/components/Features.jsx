@@ -9,6 +9,10 @@ function Features() {
     gsap.registerPlugin(ScrollTrigger)
  useGSAP(()=>{
     gsap.to("#title", {
+        scrollTrigger:{
+            trigger:'#title',
+            start:'center 75%',
+        },
         opacity: 1,
         y: 0,
       });
@@ -18,7 +22,6 @@ function Features() {
             trigger:'#image1',
             toggleActions:'restart reverse restart reverse ',
             start:'top 85%',
-            markers:true
 
 
         },
@@ -32,15 +35,37 @@ function Features() {
             trigger:'#image2',
             toggleActions:'restart reverse restart reverse ',
             start:'top 85%',
-            markers:true
 
         },
         opacity: 1,
         y: 0,
         ease:'power2.in',
-        scale:1
+      });
+
+      gsap.to("#text1", {
+        scrollTrigger:{
+            trigger:'#text1',
+            toggleActions:'restart pause restart pause ',
+            start:'20px 80%',
+        },
+        opacity: 1,
+        x: 0,
+        ease:'easeInOut',
 
       });
+
+      gsap.to("#text2", {
+        scrollTrigger:{
+            trigger:'#text2',
+            start:'20px 80%',
+            toggleActions:'restart pause restart pause ',
+        },
+        opacity: 1,
+        x: 0,
+        ease:'easeInOut',
+
+      });
+
       gsap.to('#explore',{
         scrollTrigger:{
             trigger:'#explore',
@@ -58,7 +83,7 @@ function Features() {
       <div className="max-w-[1200px] mx-auto">
         <h1
           id="title"
-          className="text-gray-400 lg:text-6xl md:text-5xl text-3xl translate-y-20  "
+          className="text-gray-400 lg:text-6xl md:text-5xl text-3xl translate-y-20 opacity-0 "
         >
           Explore the full story .
         </h1>
@@ -104,12 +129,12 @@ function Features() {
             </div>
             <div className="flex flex-col gap-5 sm:flex-row justify-between w-full">
               <div className="sm:w-1/2">
-                <p className=" text-gray-400 font-normal text-sm lg:text-lg">
+                <p id="text1"className="opacity-0 text-gray-400 font-normal text-sm lg:text-lg -translate-x-[100%]">
                     Iphone 15 Pro is the <span className="font-bold text-sm lg:text-lg text-white">first iphone feature an aersapce-grade tittanium design ,</span> using the same alloy that spacecraft use for missions to mars 
                 </p>
               </div>
               <div className="sm:w-1/2">
-                <p className=" text-gray-400 text-sm font-normal lg:text-lg">
+                <p id="text2" className="opacity-0 text-gray-400 text-sm font-normal lg:text-lg translate-x-[100%]">
                     Titanium has one of the best stength to weigt ratios of any metal making these our <span className="font-bold lg:text-lg text-sm text-white" >lightest Pro models ever. </span>You will notice diference the mment yu pick up one up
                 </p>
               </div>

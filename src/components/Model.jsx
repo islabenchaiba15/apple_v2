@@ -8,7 +8,9 @@ import { Suspense, useEffect, useRef, useState } from "react";
 import { Environment, PerspectiveCamera, View } from "@react-three/drei";
 import { models, sizes } from "../constants";
 import Iphone from "./Iphone";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 function Model() {
+    gsap.registerPlugin(ScrollTrigger)
   const [size, setSize] = useState("small");
   const [model, setModel] = useState({
     title: "iPhone 15 Pro in Natural Titanium",
@@ -21,11 +23,19 @@ function Model() {
   const large = useRef(new THREE.Group());
 
   useGSAP(() => {
+
+
     gsap.to(".title", {
-      y: 0,
-      opacity: 1,
-    });
-  });
+        scrollTrigger:{
+            trigger:'.title',
+            start:'center 70%',
+            toggleActions:'restart pause restart pause ',
+        },
+        opacity: 1,
+        y: 0,
+        ease:'easeInOut',
+      });
+  },[]);
   const t1=gsap.timeline()
   useEffect(()=>{
     if(size==='large'){

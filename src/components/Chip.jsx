@@ -1,9 +1,11 @@
-import React from "react";
+import React, { useRef } from "react";
 import { chipImg, frameImg, frameVideo } from "../utils";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 function Chip() {
+    gsap.registerPlugin(ScrollTrigger)
   useGSAP(() => {
     gsap.from("#chip", {
       scrollTrigger: {
@@ -15,7 +17,29 @@ function Chip() {
       duration: 2,
       ease: "power2.inOut",
     });
+
+    gsap.to("#text4", {
+        scrollTrigger:{
+            trigger:'#text4',
+            start:'20px 80%',
+            toggleActions:'restart pause restart pause ',
+        },
+        opacity: 1,
+        y: 0,
+        ease:'easeInOut',
+      });
+      gsap.to(".text3", {
+        scrollTrigger:{
+            trigger:'.text3',
+            start:'20px 80%',
+            toggleActions:'restart pause restart pause ',
+        },
+        opacity: 1,
+        y: 0,
+        ease:'easeInOut',
+      });
   });
+  const videoRef=useRef()
   return (
     <div className="mx-auto relative sm:py-32 py-20 px-5 sm:px-10 bg-black  ">
       <div className="max-w-[1200px] mx-auto">
@@ -35,6 +59,7 @@ function Chip() {
           <img src={frameImg} alt="frame" className="z-10" />
           <div className="absolute z-0 w-[96%] h-[96%] top-3">
             <video
+            ref={videoRef}
               id="explore"
               className={"pointer-events-none rounded-3xl"}
               muted
@@ -49,15 +74,15 @@ function Chip() {
           </p>
 
           <div className="flex gap-5 flex-col sm:flex-row justify-between w-full mt-10">
-            <div className="flex flex-col gap-5 sm:w-1/2 justify-between">
-                <p className=" text-gray-400 font-normal text-sm lg:text-lg">
+            <div  className="flex  flex-col gap-5 sm:w-1/2 justify-between">
+                <p id="text3" className="text3 translate-y-[100%] opacity-0 text-gray-400 font-normal text-sm lg:text-lg">
                   A17 Pro is an entirely new class of iphone chip that delivers
                   our{" "}
                   <span className="font-bold text-sm lg:text-lg text-white">
                     best graphics performance by far
                   </span>
                 </p>
-                <p className=" text-gray-400 text-sm font-normal lg:text-lg">
+                <p id="text3" className="text3 text-gray-400 translate-y-[100%] opacity-0 text-sm font-normal lg:text-lg">
                   Titanium has one of the best stength to weigt ratios of any
                   metal making these our{" "}
                   <span className="font-bold lg:text-lg text-sm text-white">
@@ -66,7 +91,7 @@ function Chip() {
                   You will notice diference the mment yu pick up one up
                 </p>
             </div>
-            <div className="flex sm:w-1/2 flex-col gap-4 items-start">
+            <div id="text4" className=" translate-y-[100%] opacity-0 flex sm:w-1/2 flex-col gap-4 items-start">
                 <p className="text-gray-400 font-normal text-sm lg:text-lg">
                     New
                 </p>
